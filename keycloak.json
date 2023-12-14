@@ -1,0 +1,8 @@
+{
+  "realm": "master",
+  "auth-server-url": "http://localhost:8080",
+  "resource": "bcodex-pix",
+  "credentials": {
+    "secret": "P28Pqa3tzhMEvA2GhnyQYAVcsBPhdv2u"
+  }
+}
