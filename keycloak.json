@@ -1,8 +1,14 @@
 {
   "realm": "master",
-  "auth-server-url": "http://localhost:8080",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "none",
   "resource": "bcodex-pix",
+  "verify-token-audience": true,
   "credentials": {
     "secret": "P28Pqa3tzhMEvA2GhnyQYAVcsBPhdv2u"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {
+    "credentials": {}
   }
 }

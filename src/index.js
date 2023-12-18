@@ -23,8 +23,12 @@ app.use(express.json());
 
 app.use(createUser)
 
-app.post('/criar-cobranca', keycloak.enforcer('writecob'), function(req, res) {
+app.post('/criar-cobranca', keycloak.enforcer('writecob'), keycloak.enforcer('readcob'), function(req, res) {
   res.send("Área protegida pelo Keycloak");
+});
+
+app.get('/listar-cobranca', keycloak.enforcer('readcob'), function(req, res) {
+  res.send("Listagem de cobranças");
 });
 
 const PORT = 3000;

@@ -35,7 +35,7 @@
   "verifyEmail": false,
   "loginWithEmailAllowed": true,
   "duplicateEmailsAllowed": false,
-  "resetPasswordAllowed": false,
+  "resetPasswordAllowed": true,
   "editUsernameAllowed": false,
   "bruteForceProtected": false,
   "permanentLockout": false,
@@ -133,6 +133,16 @@
       }
     ],
     "client": {
+      "backoffice": [
+        {
+          "id": "53cac84d-0f42-44d6-93e0-1b46af5f5ae1",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "afca1689-76d0-471a-a6f6-6cc72dfe3ec1",
+          "attributes": {}
+        }
+      ],
       "security-admin-console": [],
       "admin-cli": [
         {
@@ -475,7 +485,15 @@
     {
       "id": "878148c8-9d4d-47ca-94d7-be113d5333ac",
       "name": "manager",
-      "path": "/manager"
+      "path": "/manager",
+      "subGroups": [
+        {
+          "id": "04ea31da-84e7-409e-907b-1d33947764b5",
+          "name": "service",
+          "path": "/manager/service",
+          "parentId": "878148c8-9d4d-47ca-94d7-be113d5333ac"
+        }
+      ]
     },
     {
       "id": "1709c16b-3d0e-4296-8c81-e4f5a29cffe0",
@@ -534,6 +552,27 @@
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "webAuthnPolicyPasswordlessExtraOrigins": [],
   "users": [
+    {
+      "id": "e9e0a5b3-69ca-46d7-8bf9-e664843da11e",
+      "createdTimestamp": 1702905977418,
+      "username": "service-account-backoffice",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "backoffice",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-master"
+      ],
+      "clientRoles": {
+        "backoffice": [
+          "uma_protection"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
     {
       "id": "7d132d42-149e-47a9-b0ad-7362dad92e4b",
       "createdTimestamp": 1702545315808,
@@ -772,6 +811,150 @@
       ]
     },
     {
+      "id": "afca1689-76d0-471a-a6f6-6cc72dfe3ec1",
+      "clientId": "backoffice",
+      "name": "",
+      "description": "",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "/*"
+      ],
+      "webOrigins": [
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "client.secret.creation.time": "1702905977",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "a9ebdd1c-5b6f-47e9-b028-bcf31000e71f",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "24ecb0bb-60e4-422e-92c7-08befd5d9a3f",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "9099f961-cb04-4bae-ba9d-3a3b849aa8ca",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": true,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Default Resource",
+            "type": "urn:backoffice:resources:default",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "_id": "1c287653-d79e-4dc8-b7d3-3cbaf89fcf50",
+            "uris": [
+              "/*"
+            ]
+          }
+        ],
+        "policies": [
+          {
+            "id": "dda43837-f618-429c-a04f-b809cd84fe2b",
+            "name": "Default Policy",
+            "description": "A policy that grants access only for users within this realm",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+            }
+          },
+          {
+            "id": "21a7b9ef-4fa2-415b-98ed-0890ca194964",
+            "name": "Default Permission",
+            "description": "A permission that applies to the default resource type",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "defaultResourceType": "urn:backoffice:resources:default",
+              "applyPolicies": "[\"Default Policy\"]"
+            }
+          }
+        ],
+        "scopes": [],
+        "decisionStrategy": "UNANIMOUS"
+      }
+    },
+    {
       "id": "a3ffd4e4-6a24-4f4d-8145-c3bb2ebbd686",
       "clientId": "bcodex-pix",
       "name": "bcodex-pix",
@@ -893,6 +1076,15 @@
             "_id": "3c2ab482-7d31-4828-8eba-d63b104d0445",
             "uris": [],
             "icon_uri": ""
+          },
+          {
+            "name": "readcob",
+            "ownerManagedAccess": false,
+            "displayName": "ler cobranças",
+            "attributes": {},
+            "_id": "a76b3161-24bd-4b26-a582-87b36fc1805a",
+            "uris": [],
+            "icon_uri": ""
           }
         ],
         "policies": [
@@ -932,6 +1124,29 @@
             }
           },
           {
+            "id": "b4d5f220-7cb0-4bf6-a815-ae3ec5adff2f",
+            "name": "Manager Service User",
+            "description": "",
+            "type": "group",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "groups": "[{\"path\":\"/manager/service\",\"extendChildren\":false}]",
+              "groupsClaim": ""
+            }
+          },
+          {
+            "id": "4db067c1-4a0e-474f-aade-b2427b578020",
+            "name": "backoffice",
+            "description": "",
+            "type": "client",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "clients": "[\"backoffice\"]"
+            }
+          },
+          {
             "id": "8f33ec67-449c-4c7b-9eee-37b4936b97af",
             "name": "Default Permission",
             "description": "A permission that applies to the default resource type",
@@ -965,6 +1180,30 @@
             "decisionStrategy": "UNANIMOUS",
             "config": {
               "resources": "[\"writecob\"]"
+            }
+          },
+          {
+            "id": "e170393c-a670-400d-ad01-a8c378639733",
+            "name": "Service Users",
+            "description": "",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"readcob\"]",
+              "applyPolicies": "[\"Manager Service User\"]"
+            }
+          },
+          {
+            "id": "c40318b8-46e8-41e9-ac4e-37feb3b2b9db",
+            "name": "Backoffice",
+            "description": "",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "CONSENSUS",
+            "config": {
+              "resources": "[\"readcob\"]",
+              "applyPolicies": "[\"backoffice\"]"
             }
           }
         ],
